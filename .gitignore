@@ -1,0 +1,17 @@
+# Python
+__pycache__/
+*.py[cod]
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Dataset
+data/raw/*.csv
+data/processed/*.csv
+
+# Trained models
+models/*.pkl
+
+# OS
+.DS_Store
+Thumbs.db
