@@ -1,24 +1,22 @@
 # Dataset
 
-This folder contains the datasets used for the Titanic Survival Prediction project.
+This folder contains the raw and processed datasets used in the Titanic Survival Prediction project.
 
 ## Dataset Source
 
-The dataset was obtained from Kaggle:
+The dataset was obtained from the Kaggle Titanic competition:
 
-[ Titanic Dataset – Kaggle ](https://www.kaggle.com/c/titanic/data)
+https://www.kaggle.com/c/titanic/data
 
 ## Directory Structure
 
 ```text
 data/
 ├── raw/
-│   ├── .gitkeep
 │   ├── train.csv
 │   └── test.csv
 │
 ├── processed/
-│   ├── .gitkeep
 │   ├── train_processed.csv
 │   └── test_processed.csv
 │
@@ -29,68 +27,51 @@ data/
 
 ### `raw/train.csv`
 
-The original training dataset provided by Kaggle.
+The original training dataset.
 
-This dataset contains the target variable:
-
-`Survived`
-
-The training data is used for:
-
-* Exploratory Data Analysis
-* Data preprocessing
-* Feature engineering
-* Model training
-* Model validation
+It contains passenger information and the `Survived` target variable.
 
 ### `raw/test.csv`
 
-The original test dataset provided by Kaggle.
+The original test dataset.
 
-This dataset does not contain the `Survived` column.
-
-It is used to generate predictions after the model has been trained.
+It contains passenger information but does not contain the `Survived` target variable.
 
 ## Processed Data
 
-### `processed/train_processed.csv`
+The preprocessing steps are implemented in:
 
-The processed training dataset generated after preprocessing and feature engineering.
+```text
+src/preprocessing.py
+```
 
-This dataset is used as input for model training.
+The processed datasets are generated using the preprocessing pipeline and saved separately:
 
-### `processed/test_processed.csv`
+* `train_processed.csv`
+* `test_processed.csv`
 
-The processed test dataset generated using the same preprocessing steps applied to the training data.
+The processed datasets are used in the modeling and prediction stages.
 
-This dataset is used for generating final predictions.
-
-## Data Processing Workflow
+## Data Workflow
 
 ```text
 train.csv
     ↓
-Data Cleaning & Preprocessing
+Preprocessing
     ↓
 train_processed.csv
     ↓
 Model Training
-```
 
-```text
+
 test.csv
     ↓
-Data Cleaning & Preprocessing
+Preprocessing
     ↓
 test_processed.csv
     ↓
-Trained Model
-    ↓
-Predictions
+Prediction
 ```
 
-## Git Tracking
+The raw and processed CSV files are excluded from Git tracking using `.gitignore`.
 
-The original and processed CSV files are excluded from Git tracking because of their file size.
-
-The dataset files should be downloaded separately and placed inside the appropriate directories.
