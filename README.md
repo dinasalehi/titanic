@@ -1,35 +1,40 @@
 # Titanic Survival Prediction
 
+A complete machine learning classification project for predicting passenger survival on the Titanic using the Kaggle Titanic dataset.
+
 ## Overview
 
-This project focuses on predicting passenger survival on the Titanic using machine learning classification models.
+This project implements an end-to-end machine learning pipeline including:
 
-The project includes data exploration, preprocessing, feature engineering, model training, evaluation, and prediction.
+* Exploratory Data Analysis (EDA)
+* Data Preprocessing
+* Feature Engineering
+* Model Training
+* Model Evaluation
+* Prediction on the Kaggle test dataset
+* Generation of the Kaggle submission file
 
 ## Dataset
 
-The dataset is obtained from the Kaggle Titanic competition.
+The project uses the Titanic dataset from **Kaggle**.
 
-The dataset contains two main files:
-
-* `train.csv` — contains passenger information and the `Survived` target variable.
-* `test.csv` — contains passenger information without the `Survived` target variable.
+* `train.csv` — training dataset containing the `Survived` target.
+* `test.csv` — test dataset used for generating predictions.
 
 ## Project Structure
 
 ```text
-titanic-survival-prediction/
+titanic/
 │
 ├── data/
 │   ├── raw/
-│   │   ├── train.csv
-│   │   └── test.csv
-│   │
 │   ├── processed/
-│   │   ├── train_processed.csv
-│   │   └── test_processed.csv
-│   │
+│   ├── submission/
+│   │   └── predictions.csv
 │   └── README.md
+│
+├── models/
+│   └── model.pkl
 │
 ├── notebooks/
 │   ├── 01_eda.ipynb
@@ -37,132 +42,80 @@ titanic-survival-prediction/
 │   └── 03_modeling.ipynb
 │
 ├── src/
-│   ├── __init__.py
 │   ├── data_loader.py
 │   ├── preprocessing.py
 │   ├── train.py
 │   └── predict.py
 │
-├── models/
-│   └── model.pkl
-│
 ├── outputs/
-│   └── figures/
-│
 ├── requirements.txt
 ├── .gitignore
-├── README.md
-└── LICENSE
+├── LICENSE
+└── README.md
 ```
 
-## Project Workflow
+## Workflow
 
 ```text
-Raw Dataset
+train.csv
      ↓
-Exploratory Data Analysis
+EDA
      ↓
-Data Preprocessing
+Preprocessing
      ↓
-Feature Engineering
+train_processed.csv
      ↓
 Model Training
      ↓
-Model Evaluation
+model.pkl
+     ↓
+test.csv
+     ↓
+Preprocessing
+     ↓
+test_processed.csv
      ↓
 Prediction
+     ↓
+data/submission/predictions.csv
 ```
 
-## Exploratory Data Analysis
+## Models
 
-The `01_eda.ipynb` notebook is used to explore the Titanic dataset.
-
-The analysis includes:
-
-* Dataset structure
-* Missing values
-* Numerical feature distributions
-* Categorical feature distributions
-* Survival distribution
-* Survival by sex
-* Survival by passenger class
-* Age and survival
-* Fare and survival
-* Correlation analysis
-
-## Data Preprocessing
-
-The preprocessing steps are implemented in `src/preprocessing.py`.
-
-The preprocessing pipeline contains three main classes:
-
-* `AgeImputer`
-* `FeatureEncoder`
-* `FeaturesDropper`
-
-These classes are combined into a preprocessing pipeline and applied to the training and test datasets.
-
-The processed datasets are saved as:
-
-```text
-data/processed/train_processed.csv
-data/processed/test_processed.csv
-```
-
-## Machine Learning Models
-
-The project uses classification models to predict passenger survival.
-
-The planned models include:
+The following classification models are implemented:
 
 * Random Forest Classifier
-* XGBoost Classifier
-* LightGBM Classifier
+* Decision Tree Classifier
+* Logistic Regression
+
+Hyperparameter tuning is performed using `GridSearchCV` to find the best configuration for each model.
 
 ## Evaluation Metrics
 
-The models are evaluated using:
+The models are evaluated using the following metrics:
 
 * Accuracy
 * Precision
 * Recall
 * F1 Score
 
-## Technologies
+## Submission File
 
-* Python
-* Pandas
-* NumPy
-* Scikit-learn
-* XGBoost
-* LightGBM
-* Matplotlib
-* Seaborn
-* Joblib
-* Jupyter Notebook
-
-## Installation
-
-Install the required dependencies using:
-
-```bash
-pip install -r requirements.txt
-```
-
-## Usage
-
-Run the notebooks in the following order:
+The final prediction file is stored in:
 
 ```text
-01_eda.ipynb
-      ↓
-02_preprocessing.ipynb
-      ↓
-03_modeling.ipynb
+data/submission/predictions.csv
 ```
 
-The preprocessing notebook generates the processed training and test datasets, which are then used during the modeling stage.
+`predictions.csv` contains two columns:
+
+| Column        | Description                          |
+| ------------- | ------------------------------------ |
+| `PassengerId` | Unique passenger identifier          |
+| `Survived`    | Predicted survival (0 = No, 1 = Yes) |
+
+The generated file follows the required format for submission to the Kaggle Titanic competition.
 
 ## License
 
-This project is licensed under t
+This project is licensed under the MIT License. See the `LICENSE` file for details.
