@@ -53,7 +53,7 @@ class FeaturesDropper(BaseEstimator,TransformerMixin):
         return self
     def transform(self,x):
         return x.drop([ 'Name', 'Sex',
-      'Ticket', 'Fare', 'Cabin', 'Embarked','N'],axis=1,errors='ignore')    
+      'Ticket','Cabin', 'Embarked','N'],axis=1,errors='ignore')    
 
 
 
