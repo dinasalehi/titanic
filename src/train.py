@@ -27,7 +27,7 @@ def standardisation(x_train,x_test):
 
     return x_train_scaled,x_test_scaled
 
-def tree_models(model,param_grid,x_train,x_test,y_train,y_test):
+def train_model(model,param_grid,x_train,x_test,y_train,y_test):
     """ Train and tune a tree-based models using GridSearchCV."""
 
     grid_search=GridSearchCV(
