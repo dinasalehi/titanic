@@ -28,18 +28,35 @@ def standardisation(x_train,x_test):
     return x_train_scaled,x_test_scaled
 
 def tree_models(model,param_grid,x_train,x_test,y_train,y_test):
-    """ Train and tune a tree-based regression model using GridSearchCV."""
+    """ Train and tune a tree-based models using GridSearchCV."""
 
     grid_search=GridSearchCV(
         estimator=model,
         param_grid=param_grid,
         scoring='accuracy',
+        cv=5,
         return_train_score=True,
         n_jobs=-1)
     grid_search.fit(x_train,y_train) 
     best_model=grid_search.best_estimator_
-    y_pred=best_model.predict(x_test)
-    acc=accuracy_score(y_pred,y_test)
-    return best_model,y_pred,acc
+    predictions=best_model.predict(x_test)
+    acc=accuracy_score(predictions,y_test)
+    return best_model,predictions,acc
    
-   
+def logestic_model(model,param_grid,x_train,x_test,y_train,y_test):   
+    """ Train and tune a logestic regression model using GridSearchCV."""
+
+    grid_search=GridSearchCV(
+        estimator=model,
+        param_grid=param_grid,
+        scoring='accuracy',
+        cv=5,
+        return_train_score=True,
+        n_jobs=-1)
+    
+    grid_search.fit(x_train,y_train)
+
+    best_logestic_model=grid_search.best_estimator_
+    predictions=best_logestic_model.predict(x_test)
+    acc=accuracy_score(predictions,y_test)
+    return best_logestic_model,predictions,acc
